@@ -73,6 +73,7 @@ def cli(
     sqlite_file,
     sqlite_tables,
     without_foreign_keys,
+    without_indices,
     mysql_user,
     mysql_password,
     mysql_database,
@@ -91,7 +92,8 @@ def cli(
         converter = SQLite3toMySQL(
             sqlite_file=sqlite_file,
             sqlite_tables=sqlite_tables,
-            without_foreign_keys=without_foreign_keys
+            without_foreign_keys=without_foreign_keys,
+            without_indices=without_indices
             or (sqlite_tables is not None and len(sqlite_tables) > 0),
             mysql_user=mysql_user,
             mysql_password=mysql_password,
