@@ -60,6 +60,12 @@ class SQLite3toMySQL:
             else (kwargs.get("without_foreign_keys") or False)
         )
 
+        self._without_indices = (
+            True
+            if len(self._sqlite_tables) > 0
+            else (kwargs.get("without_indices") or False)
+        )
+
         self._mysql_user = str(kwargs.get("mysql_user"))
 
         self._mysql_password = (
@@ -602,7 +608,8 @@ class SQLite3toMySQL:
                         raise
 
                 # add indices
-                self._add_indices(table["name"])
+                if not self._without_indices:
+                    self._add_indices(table["name"])
 
                 # add foreign keys
                 if not self._without_foreign_keys:

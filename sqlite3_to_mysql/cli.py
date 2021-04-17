@@ -30,6 +30,9 @@ from .debug_info import info
     "-X", "--without-foreign-keys", is_flag=True, help="Do not transfer foreign keys."
 )
 @click.option(
+    "-I", "--without-indices", is_flag=True, help="Do not transfer indices."
+)
+@click.option(
     "-d", "--mysql-database", default=None, help="MySQL database name", required=True
 )
 @click.option("-u", "--mysql-user", default=None, help="MySQL user", required=True)
